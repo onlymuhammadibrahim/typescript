@@ -1,41 +1,27 @@
-import { useState } from "react";
+// import { useContext } from "react";
+// import { UserContext } from "./UserContextProvider";
+
+import { Countries } from "./enums";
 
 interface Props {
   Name: string;
   Age: number;
   Married: boolean;
+  country: Countries;
 }
 
-const Person = (props: Props) => {
-  const [isShowInfo, setShowInfo] = useState<boolean | null>(false);
-  const [personBio, setPersonBio] = useState<string | null>(null);
 
-  const toggleInfo = () => {
-    setShowInfo((prev) => !prev);
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPersonBio(event.target.value)
-  }
-
-  //on submit the event name will be React.FormEvent<HTMLFormElement>
+const User = (props: Props) => {
+  // const { users, updateUser, deleteUser, addUser } = useContext(UserContext);
 
   return (
     <div>
-      {isShowInfo ? (
-        <div>
-          <p>Name: {props.Name}</p>
-          <p>Age: {props.Age}</p>
-          <p>This person is {props.Married ? "is married" : "not married"}</p>
-          <p>Bio: {personBio === null ? "No bio" : personBio}</p>
-          <input onChange={handleChange} />
-        </div>
-      ) : (
-        ""
-      )}
-      <button onClick={toggleInfo}>Toggle Info</button>
+      <p>Name: {props.Name}</p>
+      <p>Age: {props.Age}</p>
+      <p>This person is {props.Married ? "is married" : "not married"}</p>
+      <p>Country of origin: {props.country}</p>
     </div>
   );
 };
 
-export default Person;
+export default User;
